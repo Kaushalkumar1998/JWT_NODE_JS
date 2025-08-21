@@ -1,8 +1,8 @@
-import UserMongo from '../models/user.mongo.js';
+import User from '../models/user.mongo.js';
 
 const createUser = async (userData) => {
     try {
-        const user = new UserMongo(userData);
+        const user = new User(userData);
         await user.save();
         return user;
     } catch (error) {
@@ -12,7 +12,7 @@ const createUser = async (userData) => {
 
 const getUserByEmail = async (email) => {
     try {
-        const user = await UserMongo.findOne({ email }).lean();
+        const user = await User.findOne({ email }).lean();
         if (!user) {
             throw new Error('User not found');
         }
@@ -25,7 +25,7 @@ const getUserByEmail = async (email) => {
 
 const getUserById = async (id) => {
     try {
-        const user = await UserMongo.findById(id).lean();
+        const user = await User.findById(id).lean();
         if (!user) {
             throw new Error('User not found');
         }
@@ -37,7 +37,7 @@ const getUserById = async (id) => {
 
 const updateUser = async (id, updateData) => {
     try {
-        const user = await UserMongo.findByIdAndUpdate(id, updateData, { new: true, runValidators: true }).lean();
+        const user = await User.findByIdAndUpdate(id, updateData, { new: true, runValidators: true }).lean();
         return user;
     } catch (error) {
         throw new Error(`Error updating user: ${error.message}`);
@@ -46,7 +46,7 @@ const updateUser = async (id, updateData) => {
 
 const deleteUser = async (id) => {
     try {
-        const user = await UserMongo.findByIdAndDelete(id);
+        const user = await User.findByIdAndDelete(id);
         return user;
     } catch (error) {
         throw new Error(`Error deleting user: ${error.message}`);
@@ -54,7 +54,7 @@ const deleteUser = async (id) => {
 }
 const getAllUsers = async (filter = {}, options = {}) => {
     try {
-        const users = await UserMongo.find(filter).skip(options.skip || 0).limit(options.limit || 10).lean();
+        const users = await User.find(filter).skip(options.skip || 0).limit(options.limit || 10).lean();
         return users;
     } catch (error) {
         throw new Error(`Error fetching all users: ${error.message}`);
