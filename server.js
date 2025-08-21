@@ -1,4 +1,4 @@
-import app from "./src/app";
+import app from "./src/app.js";
 import { PORT } from "./src/config/env.js";
 import { connectToMongo } from "./src/db/mongo.js";
 import logger from "./src/logger/index.js";

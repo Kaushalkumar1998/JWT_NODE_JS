@@ -1,13 +1,10 @@
 import mongoose from "mongoose";
-import { MONGO_URI } from "../config/env";
-import logger from "../logger";
+import { MONGO_URI } from "../../src/config/env.js";
+import logger from "../logger/index.js";
 
 export const connectToMongo = async () => {
     try {
-        await mongoose.connect(MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect(MONGO_URI);
         logger.info("Connected to MongoDB successfully");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);

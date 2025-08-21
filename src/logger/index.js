@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { NODE_ENV } from '../config/env';
+import { NODE_ENV } from '../config/env.js';
 
 const level = NODE_ENV === 'development' ? 'debug' : 'info';
 

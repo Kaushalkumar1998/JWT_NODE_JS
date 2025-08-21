@@ -1,4 +1,4 @@
-import userMongoRepo from '../repositories/userMongoRepo.js';
+import userMongoRepo from '../repositories/userMongo.repo.js';
 
 
 const createUser = async (userData) => {
